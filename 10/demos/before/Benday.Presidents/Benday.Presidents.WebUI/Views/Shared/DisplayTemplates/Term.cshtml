@@ -1,0 +1,9 @@
+﻿@model Benday.Presidents.Core.Models.Term
+@{
+    Layout = null;
+}
+<li>
+    <text>
+        #@Html.DisplayFor(model => model.Number) @Html.DisplayFor(model => model.Role) from @Model.Start.ToShortDateString() to @Model.End.ToShortDateString()
+    </text>
+</li>

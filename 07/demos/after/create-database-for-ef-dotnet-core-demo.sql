@@ -1,0 +1,10 @@
+/*
+DROP DATABASE DevOps2017_EfDotnetCore
+GO
+*/
+
+CREATE DATABASE DevOps2017_EfDotnetCore
+GO
+
+USE DevOps2017_EfDotnetCore
+GO

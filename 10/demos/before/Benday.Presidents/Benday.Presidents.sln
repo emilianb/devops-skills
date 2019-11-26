@@ -1,0 +1,82 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1A3016C5-6014-494E-B994-A7A571303ED4}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benday.Presidents.UnitTests", "Benday.Presidents.UnitTests\Benday.Presidents.UnitTests.csproj", "{D1EF2BD7-A24C-4BC5-BED1-C8495D550260}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benday.Presidents.Common", "Benday.Presidents.Common\Benday.Presidents.Common.csproj", "{FD4072A3-C155-437B-A327-4A3F22831C2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benday.Presidents.Core", "Benday.Presidents.Core\Benday.Presidents.Core.csproj", "{9B2E2FD8-2BCC-4199-8204-3DFB0FB567AB}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Benday.Presidents.Database", "Benday.Presidents.Database\Benday.Presidents.Database.sqlproj", "{E175FC47-483A-49E2-BF9A-8840446BDB5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benday.Presidents.IntegrationTests", "Benday.Presidents.IntegrationTests\Benday.Presidents.IntegrationTests.csproj", "{2FFF97E4-AC04-4A4E-BD27-6F7D619E5EC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benday.Presidents.Tests.Common", "Benday.Presidents.Tests.Common\Benday.Presidents.Tests.Common.csproj", "{007A5D91-5991-4928-9569-BC361D500E82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benday.Presidents.WebUI", "Benday.Presidents.WebUI\Benday.Presidents.WebUI.csproj", "{D470C84E-ADFF-49A1-88BF-6A1C512C5E0F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{8EAA518A-D641-43C0-AD83-16C6E7C7C2CA}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\deploy-to-iis.ps1 = scripts\deploy-to-iis.ps1
+		scripts\deploy-to-sql-server.ps1 = scripts\deploy-to-sql-server.ps1
+		scripts\prepare-codedui-deploy-directory.ps1 = scripts\prepare-codedui-deploy-directory.ps1
+		scripts\set-environment-variable.ps1 = scripts\set-environment-variable.ps1
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benday.Presidents.CodedUiTests", "Benday.Presidents.CodedUiTests\Benday.Presidents.CodedUiTests.csproj", "{E1D104CF-3590-47C2-B432-BB1D0076F863}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1EF2BD7-A24C-4BC5-BED1-C8495D550260}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1EF2BD7-A24C-4BC5-BED1-C8495D550260}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1EF2BD7-A24C-4BC5-BED1-C8495D550260}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1EF2BD7-A24C-4BC5-BED1-C8495D550260}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD4072A3-C155-437B-A327-4A3F22831C2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD4072A3-C155-437B-A327-4A3F22831C2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD4072A3-C155-437B-A327-4A3F22831C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD4072A3-C155-437B-A327-4A3F22831C2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B2E2FD8-2BCC-4199-8204-3DFB0FB567AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B2E2FD8-2BCC-4199-8204-3DFB0FB567AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B2E2FD8-2BCC-4199-8204-3DFB0FB567AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B2E2FD8-2BCC-4199-8204-3DFB0FB567AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E175FC47-483A-49E2-BF9A-8840446BDB5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E175FC47-483A-49E2-BF9A-8840446BDB5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E175FC47-483A-49E2-BF9A-8840446BDB5E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{E175FC47-483A-49E2-BF9A-8840446BDB5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E175FC47-483A-49E2-BF9A-8840446BDB5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E175FC47-483A-49E2-BF9A-8840446BDB5E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2FFF97E4-AC04-4A4E-BD27-6F7D619E5EC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FFF97E4-AC04-4A4E-BD27-6F7D619E5EC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FFF97E4-AC04-4A4E-BD27-6F7D619E5EC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FFF97E4-AC04-4A4E-BD27-6F7D619E5EC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{007A5D91-5991-4928-9569-BC361D500E82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{007A5D91-5991-4928-9569-BC361D500E82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{007A5D91-5991-4928-9569-BC361D500E82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{007A5D91-5991-4928-9569-BC361D500E82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D470C84E-ADFF-49A1-88BF-6A1C512C5E0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D470C84E-ADFF-49A1-88BF-6A1C512C5E0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D470C84E-ADFF-49A1-88BF-6A1C512C5E0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D470C84E-ADFF-49A1-88BF-6A1C512C5E0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1D104CF-3590-47C2-B432-BB1D0076F863}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1D104CF-3590-47C2-B432-BB1D0076F863}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1D104CF-3590-47C2-B432-BB1D0076F863}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1D104CF-3590-47C2-B432-BB1D0076F863}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8EAA518A-D641-43C0-AD83-16C6E7C7C2CA} = {1A3016C5-6014-494E-B994-A7A571303ED4}
+	EndGlobalSection
+EndGlobal

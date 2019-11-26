@@ -1,0 +1,421 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<witd:WITD application="Work item type editor" version="1.0" xmlns:witd="http://schemas.microsoft.com/VisualStudio/2008/workitemtracking/typedef">
+  <WORKITEMTYPE name="Product Backlog Item">
+    <DESCRIPTION>Tracks an activity the user will be able to perform with the product.</DESCRIPTION>
+    <FIELDS>
+      <FIELD name="Iteration Path" refname="System.IterationPath" type="TreePath" reportable="dimension" />
+      <FIELD name="Iteration ID" refname="System.IterationId" type="Integer" />
+      <FIELD name="External Link Count" refname="System.ExternalLinkCount" type="Integer" />
+      <FIELD name="Team Project" refname="System.TeamProject" type="String" reportable="dimension" />
+      <FIELD name="Hyperlink Count" refname="System.HyperLinkCount" type="Integer" />
+      <FIELD name="Attached File Count" refname="System.AttachedFileCount" type="Integer" />
+      <FIELD name="Node Name" refname="System.NodeName" type="String" />
+      <FIELD name="Area Path" refname="System.AreaPath" type="TreePath" reportable="dimension" />
+      <FIELD name="Revised Date" refname="System.RevisedDate" type="DateTime" reportable="detail" />
+      <FIELD name="Changed Date" refname="System.ChangedDate" type="DateTime" reportable="dimension" />
+      <FIELD name="ID" refname="System.Id" type="Integer" reportable="dimension" />
+      <FIELD name="Area ID" refname="System.AreaId" type="Integer" />
+      <FIELD name="Authorized As" refname="System.AuthorizedAs" type="String" syncnamechanges="true" />
+      <FIELD name="Title" refname="System.Title" type="String" reportable="dimension">
+        <REQUIRED />
+      </FIELD>
+      <FIELD name="State" refname="System.State" type="String" reportable="dimension" />
+      <FIELD name="Authorized Date" refname="System.AuthorizedDate" type="DateTime" />
+      <FIELD name="Watermark" refname="System.Watermark" type="Integer" />
+      <FIELD name="Rev" refname="System.Rev" type="Integer" reportable="dimension" />
+      <FIELD name="Changed By" refname="System.ChangedBy" type="String" syncnamechanges="true" reportable="dimension" />
+      <FIELD name="Reason" refname="System.Reason" type="String" reportable="dimension" />
+      <FIELD name="Assigned To" refname="System.AssignedTo" type="String" syncnamechanges="true" reportable="dimension">
+        <HELPTEXT>The person currently owning this backlog item</HELPTEXT>
+        <ALLOWEXISTINGVALUE />
+        <VALIDUSER />
+      </FIELD>
+      <FIELD name="Work Item Type" refname="System.WorkItemType" type="String" reportable="dimension" />
+      <FIELD name="Created Date" refname="System.CreatedDate" type="DateTime" reportable="dimension" />
+      <FIELD name="Created By" refname="System.CreatedBy" type="String" syncnamechanges="true" reportable="dimension" />
+      <FIELD name="Description" refname="System.Description" type="HTML" />
+      <FIELD name="History" refname="System.History" type="History" />
+      <FIELD name="Related Link Count" refname="System.RelatedLinkCount" type="Integer" />
+      <FIELD name="Tags" refname="System.Tags" type="PlainText" />
+      <FIELD name="Board Column" refname="System.BoardColumn" type="String" reportable="dimension" />
+      <FIELD name="Board Column Done" refname="System.BoardColumnDone" type="Boolean" reportable="dimension" />
+      <FIELD name="Board Lane" refname="System.BoardLane" type="String" reportable="dimension" />
+      <FIELD name="Priority" refname="Microsoft.VSTS.Common.Priority" type="Integer" reportable="dimension">
+        <HELPTEXT>Priority for completing the backlog item, based on business goals</HELPTEXT>
+        <ALLOWEDVALUES expanditems="true">
+          <LISTITEM value="1" />
+          <LISTITEM value="2" />
+          <LISTITEM value="3" />
+          <LISTITEM value="4" />
+        </ALLOWEDVALUES>
+        <REQUIRED />
+        <DEFAULT from="value" value="2" />
+      </FIELD>
+      <FIELD name="Backlog Priority" refname="Microsoft.VSTS.Common.BacklogPriority" type="Double" reportable="detail" />
+      <FIELD name="Integration Build" refname="Microsoft.VSTS.Build.IntegrationBuild" type="String" reportable="dimension">
+        <SUGGESTEDVALUES expanditems="true">
+          <LISTITEM value="&lt;None&gt;" />
+        </SUGGESTEDVALUES>
+      </FIELD>
+      <FIELD name="Closed Date" refname="Microsoft.VSTS.Common.ClosedDate" type="DateTime" reportable="dimension">
+        <WHENNOTCHANGED field="System.State">
+          <READONLY />
+        </WHENNOTCHANGED>
+      </FIELD>
+      <FIELD name="Effort" refname="Microsoft.VSTS.Scheduling.Effort" type="Double" reportable="measure" formula="sum">
+        <HELPTEXT>The estimated effort to implemented the backlog item</HELPTEXT>
+      </FIELD>
+      <FIELD name="Acceptance Criteria" refname="Microsoft.VSTS.Common.AcceptanceCriteria" type="HTML" />
+      <FIELD name="Value Area" refname="Microsoft.VSTS.Common.ValueArea" type="String">
+        <HELPTEXT>Business = delivers value to a user or another system; Architectural = work to support other stories or components</HELPTEXT>
+        <ALLOWEDVALUES expanditems="true">
+          <LISTITEM value="Architectural" />
+          <LISTITEM value="Business" />
+        </ALLOWEDVALUES>
+        <REQUIRED />
+        <DEFAULT from="value" value="Business" />
+      </FIELD>
+      <FIELD name="Business Value" refname="Microsoft.VSTS.Common.BusinessValue" type="Integer" reportable="measure" formula="sum">
+        <HELPTEXT>The business value for the customer when the backlog item is released</HELPTEXT>
+      </FIELD>
+    </FIELDS>
+    <WORKFLOW>
+      <STATES>
+        <STATE value="Approved">
+          <FIELDS>
+            <FIELD refname="Microsoft.VSTS.Common.ClosedDate">
+              <EMPTY />
+            </FIELD>
+          </FIELDS>
+        </STATE>
+        <STATE value="Committed">
+          <FIELDS>
+            <FIELD refname="Microsoft.VSTS.Common.ClosedDate">
+              <EMPTY />
+            </FIELD>
+          </FIELDS>
+        </STATE>
+        <STATE value="Done">
+          <FIELDS>
+            <FIELD refname="Microsoft.VSTS.Scheduling.Effort">
+              <READONLY />
+            </FIELD>
+            <FIELD refname="Microsoft.VSTS.Common.BusinessValue">
+              <READONLY />
+            </FIELD>
+          </FIELDS>
+        </STATE>
+        <STATE value="New">
+          <FIELDS>
+            <FIELD refname="Microsoft.VSTS.Common.ClosedDate">
+              <EMPTY />
+            </FIELD>
+          </FIELDS>
+        </STATE>
+        <STATE value="Removed" />
+      </STATES>
+      <TRANSITIONS>
+        <TRANSITION from="Approved" to="Committed">
+          <REASONS>
+            <DEFAULTREASON value="Commitment made by the team" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="New" to="Committed">
+          <REASONS>
+            <DEFAULTREASON value="Commitment made by the team" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="Done" to="Committed">
+          <REASONS>
+            <DEFAULTREASON value="Additional work found" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="Committed" to="Approved">
+          <REASONS>
+            <DEFAULTREASON value="Work stopped" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="New" to="Approved">
+          <REASONS>
+            <DEFAULTREASON value="Approved by the Product Owner" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="Done" to="Approved">
+          <REASONS>
+            <DEFAULTREASON value="Additional work found" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="Committed" to="New">
+          <REASONS>
+            <DEFAULTREASON value="Moved to the backlog" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="Approved" to="New">
+          <REASONS>
+            <DEFAULTREASON value="Moved to the backlog" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="Removed" to="New">
+          <REASONS>
+            <DEFAULTREASON value="Reconsidering backlog item" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="Done" to="New">
+          <REASONS>
+            <DEFAULTREASON value="Moved to the backlog" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="" to="New">
+          <REASONS>
+            <DEFAULTREASON value="New backlog item" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="Committed" to="Removed">
+          <REASONS>
+            <DEFAULTREASON value="Removed from the backlog" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="Approved" to="Removed">
+          <REASONS>
+            <DEFAULTREASON value="Removed from the backlog" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="New" to="Removed">
+          <REASONS>
+            <DEFAULTREASON value="Removed from the backlog" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="Committed" to="Done">
+          <REASONS>
+            <DEFAULTREASON value="Work finished" />
+          </REASONS>
+          <FIELDS>
+            <FIELD refname="Microsoft.VSTS.Common.ClosedDate">
+              <SERVERDEFAULT from="clock" />
+            </FIELD>
+          </FIELDS>
+        </TRANSITION>
+        <TRANSITION from="Approved" to="Done">
+          <REASONS>
+            <DEFAULTREASON value="Work finished" />
+          </REASONS>
+          <FIELDS>
+            <FIELD refname="Microsoft.VSTS.Common.ClosedDate">
+              <SERVERDEFAULT from="clock" />
+            </FIELD>
+          </FIELDS>
+        </TRANSITION>
+        <TRANSITION from="New" to="Done">
+          <REASONS>
+            <DEFAULTREASON value="Work finished" />
+          </REASONS>
+          <FIELDS>
+            <FIELD refname="Microsoft.VSTS.Common.ClosedDate">
+              <SERVERDEFAULT from="clock" />
+            </FIELD>
+          </FIELDS>
+        </TRANSITION>
+      </TRANSITIONS>
+    </WORKFLOW>
+    <FORM>
+      <Layout HideReadOnlyEmptyFields="true" HideControlBorders="true">
+        <Group Margin="(4,0,0,0)">
+          <Column PercentWidth="90">
+            <Control FieldName="System.Title" Type="FieldControl" ControlFontSize="large" EmptyText="&lt;Enter title here&gt;" />
+          </Column>
+          <Column PercentWidth="10">
+            <Control FieldName="System.ID" Type="FieldControl" ControlFontSize="large" />
+          </Column>
+        </Group>
+        <Group Margin="(10,0,0,0)">
+          <Column PercentWidth="100">
+            <Control FieldName="System.IterationPath" Type="WorkItemClassificationControl" Label="Ite&amp;ration" LabelPosition="Left" />
+          </Column>
+        </Group>
+        <Group Margin="(10,0,0,0)">
+          <Column PercentWidth="50">
+            <Group Label="Status">
+              <Column PercentWidth="100">
+                <Control FieldName="System.AssignedTo" Type="FieldControl" Label="Assi&amp;gned To" LabelPosition="Left" />
+                <Control FieldName="System.State" Type="FieldControl" Label="Stat&amp;e" LabelPosition="Left" />
+                <Control FieldName="System.AreaPath" Type="WorkItemClassificationControl" Label="&amp;Area" LabelPosition="Left" />
+                <Control FieldName="System.Reason" Type="FieldControl" Label="Reason" LabelPosition="Left" ReadOnly="True" />
+              </Column>
+            </Group>
+          </Column>
+          <Column PercentWidth="50">
+            <Group Label="Details">
+              <Column PercentWidth="100">
+                <Control FieldName="Microsoft.VSTS.Common.Priority" Type="FieldControl" Label="Priority" LabelPosition="Left" />
+                <Control FieldName="Microsoft.VSTS.Scheduling.Effort" Type="FieldControl" Label="Effort" LabelPosition="Left" />
+                <Control FieldName="Microsoft.VSTS.Common.BusinessValue" Type="FieldControl" Label="Business Value" LabelPosition="Left" />
+                <Control FieldName="Microsoft.VSTS.Common.ValueArea" Type="FieldControl" Label="Value area" LabelPosition="Left" />
+              </Column>
+            </Group>
+          </Column>
+        </Group>
+        <Group>
+          <Column PercentWidth="50">
+            <TabGroup>
+              <Tab Label="Description">
+                <Control FieldName="System.Description" Type="HtmlFieldControl" Label="" LabelPosition="Top" Dock="Fill" />
+              </Tab>
+              <Tab Label="Storyboards">
+                <Control Type="LinksControl" Name="StoryboardsControl">
+                  <LinksControlOptions>
+                    <WorkItemLinkFilters FilterType="excludeAll" />
+                    <ExternalLinkFilters FilterType="include">
+                      <Filter LinkType="Storyboard" />
+                    </ExternalLinkFilters>
+                    <LinkColumns>
+                      <LinkColumn RefName="System.Title" />
+                      <LinkColumn LinkAttribute="System.Links.Comment" />
+                    </LinkColumns>
+                  </LinksControlOptions>
+                </Control>
+              </Tab>
+              <Tab Label="Test Cases">
+                <Control Type="LinksControl" Label="" LabelPosition="Top" Name="TestedBy">
+                  <LinksControlOptions>
+                    <LinkColumns>
+                      <LinkColumn RefName="System.Id" />
+                      <LinkColumn RefName="System.WorkItemType" />
+                      <LinkColumn RefName="System.Title" />
+                      <LinkColumn RefName="System.AssignedTo" />
+                      <LinkColumn RefName="System.State" />
+                    </LinkColumns>
+                    <WorkItemLinkFilters FilterType="include">
+                      <Filter LinkType="Microsoft.VSTS.Common.TestedBy" FilterOn="forwardname" />
+                    </WorkItemLinkFilters>
+                    <ExternalLinkFilters FilterType="excludeAll" />
+                    <WorkItemTypeFilters FilterType="include">
+                      <Filter WorkItemType="Test Case" />
+                    </WorkItemTypeFilters>
+                  </LinksControlOptions>
+                </Control>
+              </Tab>
+              <Tab Label="Tasks">
+                <Control Type="LinksControl" Name="Hierarchy" Label="" LabelPosition="Top">
+                  <LinksControlOptions>
+                    <LinkColumns>
+                      <LinkColumn RefName="System.Id" />
+                      <LinkColumn RefName="System.Title" />
+                      <LinkColumn RefName="System.AssignedTo" />
+                      <LinkColumn RefName="System.State" />
+                    </LinkColumns>
+                    <WorkItemLinkFilters FilterType="include">
+                      <Filter LinkType="System.LinkTypes.Hierarchy" FilterOn="forwardname" />
+                    </WorkItemLinkFilters>
+                    <ExternalLinkFilters FilterType="excludeAll" />
+                    <WorkItemTypeFilters FilterType="include">
+                      <Filter WorkItemType="Task" />
+                    </WorkItemTypeFilters>
+                  </LinksControlOptions>
+                </Control>
+              </Tab>
+            </TabGroup>
+          </Column>
+          <Column PercentWidth="50">
+            <TabGroup Margin="(5,0,0,0)">
+              <Tab Label="Acceptance Criteria">
+                <Control FieldName="Microsoft.VSTS.Common.AcceptanceCriteria" Type="HtmlFieldControl" Label="" LabelPosition="Top" Dock="Fill" />
+              </Tab>
+              <Tab Label="History">
+                <Control FieldName="System.History" Type="WorkItemLogControl" Label="" LabelPosition="Top" Dock="Fill" />
+              </Tab>
+              <Tab Label="Links">
+                <Control Type="LinksControl" Name="GeneralLinks" LabelPosition="Top">
+                  <LinksControlOptions>
+                    <LinkColumns>
+                      <LinkColumn RefName="System.Id" />
+                      <LinkColumn RefName="System.WorkItemType" />
+                      <LinkColumn RefName="System.Title" />
+                      <LinkColumn RefName="System.AssignedTo" />
+                      <LinkColumn RefName="System.State" />
+                      <LinkColumn LinkAttribute="System.Links.Comment" />
+                    </LinkColumns>
+                    <WorkItemLinkFilters FilterType="includeAll" />
+                    <ExternalLinkFilters FilterType="includeAll" />
+                    <WorkItemTypeFilters FilterType="includeAll" />
+                  </LinksControlOptions>
+                </Control>
+              </Tab>
+              <Tab Label="Attachments">
+                <Control Type="AttachmentsControl" Label="" LabelPosition="Top" />
+              </Tab>
+            </TabGroup>
+          </Column>
+        </Group>
+      </Layout>
+      <WebLayout>
+        <SystemControls>
+          <Control Type="FieldControl" FieldName="System.Title" EmptyText="Enter title" />
+          <Control Label="Assi&amp;gned To" Type="FieldControl" FieldName="System.AssignedTo" />
+          <Control Label="Stat&amp;e" Type="FieldControl" FieldName="System.State" />
+          <Control Label="Reason" Type="FieldControl" FieldName="System.Reason" />
+          <Control Label="&amp;Area" Type="WorkItemClassificationControl" FieldName="System.AreaPath" />
+          <Control Label="Ite&amp;ration" Type="WorkItemClassificationControl" FieldName="System.IterationPath" />
+          <Control Label="History" Type="WorkItemLogControl" FieldName="System.History" />
+          <Control Label="Links" Type="LinksControl" Name="Links" />
+          <Control Label="Attachments" Type="AttachmentsControl" Name="Attachments" />
+        </SystemControls>
+        <Page Label="Details" LayoutMode="FirstColumnWide">
+          <Section>
+            <Group Label="Description">
+              <Control Label="Description" Type="HtmlFieldControl" FieldName="System.Description" />
+            </Group>
+            <Group Label="Acceptance Criteria">
+              <Control Label="Acceptance Criteria" Type="HtmlFieldControl" FieldName="Microsoft.VSTS.Common.AcceptanceCriteria" />
+            </Group>
+          </Section>
+          <Section>
+            <Group Label="Details">
+              <Control Label="Priority" Type="FieldControl" FieldName="Microsoft.VSTS.Common.Priority" />
+              <Control Label="Effort" Type="FieldControl" FieldName="Microsoft.VSTS.Scheduling.Effort" />
+              <Control Label="Business Value" Type="FieldControl" FieldName="Microsoft.VSTS.Common.BusinessValue" />
+              <Control Label="Value area" Type="FieldControl" FieldName="Microsoft.VSTS.Common.ValueArea" />
+            </Group>
+          </Section>
+          <Section>
+            <Group Label="Development">
+              <Control Type="LinksControl" Name="Development">
+                <LinksControlOptions ViewMode="Dynamic" ZeroDataExperience="Development" ShowCallToAction="true">
+                  <ListViewOptions GroupLinks="false"></ListViewOptions>
+                  <LinkFilters>
+                    <ExternalLinkFilter Type="Build" />
+                    <ExternalLinkFilter Type="Pull Request" />
+                    <ExternalLinkFilter Type="Branch" />
+                    <ExternalLinkFilter Type="Fixed in Commit" />
+                    <ExternalLinkFilter Type="Fixed in Changeset" />
+                    <ExternalLinkFilter Type="Source Code File" />
+                  </LinkFilters>
+                </LinksControlOptions>
+              </Control>
+            </Group>
+            <Group Label="Related Work">
+              <Control Type="LinksControl" Name="Related Work">
+                <LinksControlOptions>
+                  <LinkFilters>
+                    <WorkItemLinkFilter Type="System.LinkTypes.Duplicate-Reverse" />
+                    <WorkItemLinkFilter Type="System.LinkTypes.Hierarchy-Reverse" />
+                    <WorkItemLinkFilter Type="Microsoft.VSTS.Common.TestedBy-Reverse" />
+                    <WorkItemLinkFilter Type="Microsoft.VSTS.Common.TestedBy-Forward" />
+                    <WorkItemLinkFilter Type="System.LinkTypes.Hierarchy-Forward" />
+                    <WorkItemLinkFilter Type="System.LinkTypes.Duplicate-Forward" />
+                    <WorkItemLinkFilter Type="System.LinkTypes.Dependency" />
+                    <WorkItemLinkFilter Type="System.LinkTypes.Related" />
+                  </LinkFilters>
+                  <Columns>
+                    <Column Name="System.State" />
+                    <Column Name="System.ChangedDate" />
+                    <Column Name="System.Links.Comment" />
+                  </Columns>
+                </LinksControlOptions>
+              </Control>
+            </Group>
+          </Section>
+        </Page>
+      </WebLayout>
+    </FORM>
+  </WORKITEMTYPE>
+</witd:WITD>
